@@ -29,7 +29,7 @@
  * @param output file
  * @param an alert message
  */
-void onCompress(char *inputPathFile, char *outputPathFile, const char *alertMessage);
+int onCompress(char* inputPathFile, char* outputPathFile);
 
 /**
  * This function gets two strings, which are

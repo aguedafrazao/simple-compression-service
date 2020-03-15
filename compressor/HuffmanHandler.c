@@ -15,30 +15,25 @@
 /**********************************************************
             Contract's functions implementation
 ***********************************************************/
-void onCompress(char *inputPathFile, 
-        char *outputPathFile, const char *alertMessage) {
-    FILE* inputFile = fopen(inputPathFile, "rb"); //opening inputfile
-    while(!inputFile) { //if there's something wrong on opening...
-        printf("%s", COLOR_RED);
-        printf("%s", alertMessage); //say to user type name again
-         printf("%s", COLOR_CYAN);
-        scanf("%[^\n]", inputPathFile); //get given path
-        getchar(); //clean buffer
-        DEBUG printf("%s\n", inputPathFile); 
-        inputFile = fopen(inputPathFile, "rb"); //try to open file again
-    }
-    int* bytesFrequency = getBytesFrequency(inputFile); //getting bytes frenquency
-    fseek(inputFile, 0, SEEK_SET); //because we've gone through the file, so get back to start
-    HuffmanTree* tree = buildHuffmanTree(bytesFrequency); //building huffman tree
-    byte** matrixPath = buildPaths(tree); //building the matrix that helps to handle bytes
-    strcat(outputPathFile,VALID_EXTENSION); //appending .huff to given output name
-    FILE* outputFile = fopen(outputPathFile,"wb"); //opening output file 
-    int treeSize = getTreeSize(tree); //getting tree size
-    Header* header = getHeaderInfo(matrixPath, treeSize, inputFile); //creating the header
-    fseek(inputFile, 0, SEEK_SET); //because we've gone through the file, so get back to start
-    writeSources(header, tree, matrixPath, outputFile, inputFile); //writes header, tree, and matrix
-    fclose(inputFile);
-    fclose(outputFile); 
+int onCompress(char* inputPathFile, char* outputPathFile) {
+	FILE* inputFile = fopen(inputPathFile, "rb"); //opening inputfile
+	if(!inputFile) {
+		printf("failed to open file %s\n", inputPathFile);
+		return 1;
+	}	
+    	int* bytesFrequency = getBytesFrequency(inputFile); //getting bytes frenquency
+    	fseek(inputFile, 0, SEEK_SET); //because we've gone through the file, so get back to start
+    	HuffmanTree* tree = buildHuffmanTree(bytesFrequency); //building huffman tree
+    	byte** matrixPath = buildPaths(tree); //building the matrix that helps to handle bytes
+    	strcat(outputPathFile, VALID_EXTENSION); //appending .huff to given output name
+    	FILE* outputFile = fopen(outputPathFile,"wb"); //opening output file 
+    	int treeSize = getTreeSize(tree); //getting tree size
+    	Header* header = getHeaderInfo(matrixPath, treeSize, inputFile); //creating the header
+    	fseek(inputFile, 0, SEEK_SET); //because we've gone through the file, so get back to start
+    	writeSources(header, tree, matrixPath, outputFile, inputFile); //writes header, tree, and matrix
+    	fclose(inputFile);
+    	fclose(outputFile); 
+	return 0;
 }
 
 void onDecompress(char* inputPathFile, char* outputPathFile,

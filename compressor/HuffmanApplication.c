@@ -104,7 +104,7 @@ void huffmanApplication() {
 				askForOutput(outputFileLanguages[LANGUAGE - 1]);
 				scanf("%[^\n]", outputFileName);
 				getchar();
-				onCompress(inputFileName, outputFileName, informWrongInputFileName(LANGUAGE - 1));
+				onCompress(inputFileName, outputFileName);
 				break;
 			case DO_DECOMPRESS:
 				typedInputValue = 0;

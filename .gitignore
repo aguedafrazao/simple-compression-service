@@ -1,2 +1,4 @@
 compressor/*.o
 compressor/app
+compressor/*.txt
+compressor/*.huff
