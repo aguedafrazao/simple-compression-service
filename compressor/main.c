@@ -1,15 +1,22 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "HuffmanApplication.h"
 
 int main(int argc, char** argv) {
-	if(argc != 3) {
-		printf("missing arguments: ./app {inputFile} {outputFile}\n");
+	if(argc != 4) {
+		printf("missing arguments: ./app {option C (compress) or D(decompress)} {inputFile} {outputFile}\n");
 		return 1;
 	}
-	char* inputFile = argv[1];
-	char* outputFile = argv[2];
-    	int result = onCompress(inputFile, outputFile);
+	char* option = argv[1];
+	char* inputFile = argv[2];
+	char* outputFile = argv[3];
+	int result;
+	int compare = strcmp(option, "C");
+	if(compare == 0) 
+		result = onCompress(inputFile, outputFile);
+	else 
+    		printf("decompress\n");
 	if(result != 0)
 		return 1;
 	return 0;
