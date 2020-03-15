@@ -16,7 +16,7 @@ int main(int argc, char** argv) {
 	if(compare == 0) 
 		result = onCompress(inputFile, outputFile);
 	else 
-    		printf("decompress\n");
+    		 result = onDecompress(inputFile, outputFile);
 	if(result != 0)
 		return 1;
 	return 0;

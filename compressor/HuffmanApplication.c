@@ -116,7 +116,7 @@ void huffmanApplication() {
 				askForOutput(outputFileLanguages[LANGUAGE - 1]);
 				scanf("%[^\n]", outputFileName);
 				getchar();
-				onDecompress(inputFileName, outputFileName, informWrongInputFileName(LANGUAGE - 1), alertFileInvalidExtension(LANGUAGE - 1));
+				onDecompress(inputFileName, outputFileName);
 				break;
 			case END_APP:
 				DEBUG printf("Closing app!\n");

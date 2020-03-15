@@ -41,6 +41,6 @@ int onCompress(char* inputPathFile, char* outputPathFile);
  * @param alert message about file name
  * @param alert message about wrong path
  */
-void onDecompress(char *inputPathFile, char *outputPathFile, const char* alertMessage, const char* alertMessage1);
+int onDecompress(char *inputPathFile, char *outputPathFile);
 
 #endif

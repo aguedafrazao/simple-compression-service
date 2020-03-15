@@ -36,35 +36,26 @@ int onCompress(char* inputPathFile, char* outputPathFile) {
 	return 0;
 }
 
-void onDecompress(char* inputPathFile, char* outputPathFile,
-             const char* alertMessage, const char* alertMessage1) {
-    while(!isValidFile(inputPathFile)) {
-        printf("%s", COLOR_RED);
-        printf("%s", alertMessage1);
-        printf("%s", COLOR_CYAN); 
-        scanf("%[^\n]", inputPathFile);
-        getchar();
-        DEBUG printf("%s\n", inputPathFile);
-    }
-    FILE* inputFile = fopen(inputPathFile, "rb");
-    while(!inputFile) {
-        printf("%s", COLOR_RED);
-        printf("%s", alertMessage);
-        printf("%s", COLOR_CYAN);
-        scanf("%[^\n]", inputPathFile);
-        getchar();
-        DEBUG printf("%s\n", inputPathFile);
-        inputFile = fopen(inputPathFile, "rb");
-    }
-    byte firstByte, secondByte;
-    fscanf(inputFile, "%c", &firstByte); //getting first byte
-    int trash = getTrash(firstByte);  //getting trash
-    fscanf(inputFile, "%c", &secondByte);  //getting second byte
-    int treeSize = retrieveTreeSize(firstByte, secondByte);  //get size tree
-    byte* treeBytes = huffmanTreeBytes(inputFile, treeSize);
-    HuffmanTree* tree = reassembleHuffmanTree(treeBytes, treeSize); //reassembling huffman tree from its bytes
-    FILE* outputFile = fopen(outputPathFile, "wb");
-    rewriteOriginal(tree, trash, inputFile, outputFile); //creating output file
-    fclose(inputFile);
-    fclose(outputFile);
+int onDecompress(char* inputPathFile, char* outputPathFile) {
+    	if(!isValidFile(inputPathFile)) {
+		printf("given file to decompress is not valid\n");
+		return 1;
+	}
+    	FILE* inputFile = fopen(inputPathFile, "rb");
+    	if(!inputFile) {
+		printf("failed to open file %s\n", inputPathFile);
+                return 1;
+
+	}
+    	byte firstByte, secondByte;
+    	fscanf(inputFile, "%c", &firstByte); //getting first byte
+    	int trash = getTrash(firstByte);  //getting trash
+    	fscanf(inputFile, "%c", &secondByte);  //getting second byte
+    	int treeSize = retrieveTreeSize(firstByte, secondByte);  //get size tree
+    	byte* treeBytes = huffmanTreeBytes(inputFile, treeSize);
+    	HuffmanTree* tree = reassembleHuffmanTree(treeBytes, treeSize); //reassembling huffman tree from its bytes
+    	FILE* outputFile = fopen(outputPathFile, "wb");
+    	rewriteOriginal(tree, trash, inputFile, outputFile); //creating output file
+    	fclose(inputFile);
+    	fclose(outputFile);
 }
