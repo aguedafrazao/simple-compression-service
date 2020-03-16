@@ -14,9 +14,11 @@ RUN make
 
 RUN ls
 
-#FROM ubuntu
+FROM ubuntu
 
-#COPY --from=builder /huff/app .
+COPY --from=builder /huff/app .
+
+COPY --from=builder /huff/runner.sh .
 
 CMD ["/bin/bash", "./runner.sh"]
 
