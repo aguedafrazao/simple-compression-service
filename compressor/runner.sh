@@ -1,4 +1,4 @@
 #!/bin/sh
 
-./app $VAR1 $VAR2 $VAR3
+./app $OPTION $INPUT $OUTPUT
 
