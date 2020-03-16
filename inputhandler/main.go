@@ -1,41 +1,53 @@
-package main 
+package main
 
-import "fmt"
-//import "os/exec"
-import "net/http"
-import "log"
-import "encoding/json"
-import "encoding/base64"
-import "os"
+import (
+	//import "os/exec"
+	"encoding/json"
+	"fmt"
+	"inputhandler/redis"
+	"log"
+	"net/http"
+	"os"
+)
 
-type In struct {
+type in struct {
 	File string `json:"file"`
 }
 
+var re *redis.Client
+
 func handleFile(w http.ResponseWriter, r *http.Request) {
-	var in In
+	var in in
 	err := json.NewDecoder(r.Body).Decode(&in)
 	if err != nil {
-		fmt.Println("error on decoding: ", err)
+		http.Error(w, "failed to decode", 500)
 	}
-	dec, err := base64.StdEncoding.DecodeString(in.File)
+	re.Publish("handle", in.File)
+	payload := map[string]string{
+		"msg": "File being processed",
+	}
+	bytes, err := json.Marshal(payload)
 	if err != nil {
-		fmt.Println("pau decodando")	
+		http.Error(w, "failed to unmarshal value", 500)
 	}
-	f, err := os.Create("file")	
-	if err != nil {
-		fmt.Println("pau criando aarquivo")
-	}
-	defer f.Close()
-	_, err = f.Write(dec)
-	if err != nil {
-		fmt.Println("pau escrevendo arquivo")
-	}
-	err = f.Sync()
-	if err != nil {
-		fmt.Println("pau sync arquivp")
-	}
-	fmt.Fprintf(w, "ok")
+	fmt.Fprintf(w, string(bytes))
+	// dec, err := base64.StdEncoding.DecodeString(in.File)
+	// if err != nil {
+	// 	fmt.Println("pau decodando")
+	// }
+	// fmt.Println(dec)
+	//f, err := os.Create("file")
+	//if err != nil {
+	//}
+	//defer f.Close()
+	//_, err = f.Write(dec)
+	//if err != nil {
+	//	fmt.Println("pau escrevendo arquivo")
+	//}
+	//err = f.Sync()
+	//if err != nil {
+	//	fmt.Println("pau sync arquivp")
+	//}
 }
 
 func main() {
@@ -44,8 +56,17 @@ func main() {
 	//	fmt.Println(err)
 	//}
 	//fmt.Println(string(out))
+	port := os.Getenv("SERVER_PORT")
+	if port == "" {
+		port = "8081"
+	}
+	re = redis.New()
+	http.HandleFunc("/compress", handleFile)
+	log.Fatal(http.ListenAndServe(":"+port, nil))
 
-	http.HandleFunc("/", handleFile)
-	log.Fatal(http.ListenAndServe(":8081", nil))
+	// reply := make(chan []byte)
+	// r.Subscribe("aurelio", reply)
+	// for {
+	// 	fmt.Println(string(<-reply))
+	// }
 }
-
