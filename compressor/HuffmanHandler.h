@@ -27,7 +27,7 @@
  *
  * @param input file
  * @param output file
- * @param an alert message
+ * @return 0 if ok, 1 if false
  */
 int onCompress(char* inputPathFile, char* outputPathFile);
 
@@ -38,9 +38,8 @@ int onCompress(char* inputPathFile, char* outputPathFile);
  *
  * @param input file
  * @param output file
- * @param alert message about file name
- * @param alert message about wrong path
+ * @return 0 if ok, 1 if false
  */
-int onDecompress(char *inputPathFile, char *outputPathFile);
+int onDecompress(char* inputPathFile, char* outputPathFile);
 
 #endif
