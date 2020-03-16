@@ -1,22 +1,22 @@
 FROM gcc:4.9 AS builder
 
+ENV NAME VAR1
+
+ENV NAME VAR2
+
+ENV NAME VAR3
+
 COPY . /huff
 
 WORKDIR /huff
 
 RUN make
 
-#FROM alpine:3.7
+RUN ls
+
+#FROM ubuntu
 
 #COPY --from=builder /huff/app .
 
-#ENTRYPOINT ["./app"]
-
-#######
-
-FROM ubuntu
-
-COPY --from=builder /huff/app .
-
-CMD ["./app"]
+CMD ["/bin/bash", "./runner.sh"]
 
