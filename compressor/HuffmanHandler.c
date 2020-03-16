@@ -17,6 +17,7 @@
 ***********************************************************/
 int onCompress(char* inputPathFile, char* outputPathFile) {
 	FILE* inputFile = fopen(inputPathFile, "rb"); //opening inputfile
+	printf("APONTADO\n");
 	if(!inputFile) {
 		printf("failed to open file %s\n", inputPathFile);
 		return 1;
@@ -26,8 +27,8 @@ int onCompress(char* inputPathFile, char* outputPathFile) {
     	HuffmanTree* tree = buildHuffmanTree(bytesFrequency); //building huffman tree
     	byte** matrixPath = buildPaths(tree); //building the matrix that helps to handle bytes
     	strcat(outputPathFile, VALID_EXTENSION); //appending .huff to given output name
-    	FILE* outputFile = fopen(outputPathFile,"wb"); //opening output file 
-    	int treeSize = getTreeSize(tree); //getting tree size
+	FILE* outputFile = fopen(outputPathFile,"wb"); //opening output file 
+	int treeSize = getTreeSize(tree); //getting tree size
     	Header* header = getHeaderInfo(matrixPath, treeSize, inputFile); //creating the header
     	fseek(inputFile, 0, SEEK_SET); //because we've gone through the file, so get back to start
     	writeSources(header, tree, matrixPath, outputFile, inputFile); //writes header, tree, and matrix
