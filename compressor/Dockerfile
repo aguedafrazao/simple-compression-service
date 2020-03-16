@@ -12,8 +12,6 @@ WORKDIR /huff
 
 RUN make
 
-RUN ls
-
 FROM ubuntu
 
 COPY --from=builder /huff/app .
