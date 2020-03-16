@@ -18,5 +18,7 @@ COPY --from=builder /huff/app .
 
 COPY --from=builder /huff/runner.sh .
 
+RUN mkdir  output
+
 CMD ["/bin/bash", "./runner.sh"]
 
