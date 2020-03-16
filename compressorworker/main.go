@@ -18,8 +18,7 @@ func compressAndSend(in *in) {
 	if err != nil {
 		fmt.Println("pau decodando")
 	}
-	fmt.Println(dec)
-	f, err := os.Create("file")
+	f, err := os.Create("shared/file")
 	if err != nil {
 	}
 	defer f.Close()

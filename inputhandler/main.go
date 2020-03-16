@@ -1,7 +1,6 @@
 package main
 
 import (
-	//import "os/exec"
 	"encoding/json"
 	"fmt"
 	"inputhandler/redis"
@@ -39,11 +38,6 @@ func handleFile(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	//out, err := exec.Command("pwd").Output()
-	//if err != nil {
-	//	fmt.Println(err)
-	//}
-	//fmt.Println(string(out))
 	port := os.Getenv("SERVER_PORT")
 	if port == "" {
 		port = "8081"
