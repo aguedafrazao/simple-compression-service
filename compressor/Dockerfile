@@ -1,36 +1,43 @@
-# Getting GCC to compile executable
-FROM gcc:4.9 AS builder
+# To get packages tools
+FROM golang:1.14.0-alpine AS builder
 
-# Var to inform program option
-ENV NAME OPTION
+# Adding gcc compiler
+RUN apk add --no-cache gcc musl-dev
 
-# Var to inform input path
-ENV NAME INPUT
+# Set necessary environmet variables needed for our image
+ENV GO111MODULE=on \
+    CGO_ENABLED=1 \
+    GOOS=linux \
+    GOARCH=amd64
 
-# Var to inform output path
-ENV NAME OUTPUT
+# Move to working directory /build
+WORKDIR /build
 
-# Copying all code to /huff
-COPY . /huff
+# Copy and download dependency using go mod
+COPY go.mod .
+COPY go.sum .
+RUN go mod download
 
-# Setting /huff as work dir
-WORKDIR /huff
+# Copy the code into the container
+COPY . .
 
-# Build executable
-RUN make
+# Build the application
+RUN go build -o main
 
-# Getting running environemtn
-FROM ubuntu
+# Move to /dist directory as the place for resulting binary folder
+WORKDIR /dist
 
-# Copying executable file
-COPY --from=builder /huff/app .
+# Copy binary from build to main folder
+RUN cp /build/main .
 
-# Copying bash file to pass arguments to executable
-COPY --from=builder /huff/runner.sh .
+# Build a small image
+FROM alpine:3.7
 
-# Creating a directory to bind with host directory
-RUN mkdir  output
+RUN apk update && \
+    apk add ca-certificates && \
+    rm -rf /var/cache/apk/*
 
-# Running script to pass args to executable
-CMD ["/bin/bash", "./runner.sh"]
+COPY --from=builder /dist/ /
 
+# Command to run
+ENTRYPOINT ["/main"]
