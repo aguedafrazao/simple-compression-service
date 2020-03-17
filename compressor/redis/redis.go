@@ -16,7 +16,7 @@ func New() *Client {
 	var redispool *redis.Pool
 	redispool = &redis.Pool{
 		Dial: func() (redis.Conn, error) {
-			return redis.Dial("tcp", ":6379")
+			return redis.Dial("tcp", "localhost:6379")
 		},
 	}
 	conn := redispool.Get()
