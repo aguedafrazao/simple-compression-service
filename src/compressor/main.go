@@ -3,6 +3,7 @@ package main
 // #include "HuffmanHandler.h"
 import "C"
 import (
+	"compressor/mail"
 	"compressor/redis"
 	"encoding/base64"
 	"encoding/json"
@@ -15,12 +16,14 @@ type in struct {
 	Email string `json:"email"`
 }
 
+var m *mail.Client
+
 func compressAndSend(in *in) {
 	dec, err := base64.StdEncoding.DecodeString(in.File)
 	if err != nil {
 		fmt.Println("pau decodando")
 	}
-	f, err := os.Create("shared/file")
+	f, err := os.Create("file")
 	if err != nil {
 	}
 	defer f.Close()
@@ -32,10 +35,29 @@ func compressAndSend(in *in) {
 	if err != nil {
 		fmt.Println("pau sync arquivp")
 	}
-	C.onCompress(C.CString("shared/file"), C.CString("shared/out"))
+	C.onCompress(C.CString("file"), C.CString("out"))
+	m.Send(in.Email, "Enviado", "comprimido")
+	err = os.Remove("file")
+	if err != nil {
+		fmt.Println("pau apagando arquivo: ", err)
+	}
+	err = os.Remove("out.huff")
+	if err != nil {
+		fmt.Println("pau apagando arquivo: ", err)
+	}
 }
 
 func main() {
+	password := os.Getenv("PASSWORD")
+	if password == "" {
+		password = "12345678"
+	}
+	fmt.Println("P: ", password)
+	email := os.Getenv("EMAIL")
+	if email == "" {
+		email = "contato@coldemail.com"
+	}
+	m = mail.New(email, password)
 	r := redis.New()
 	inputs := make(chan []byte)
 	r.Subscribe("compression", inputs)
