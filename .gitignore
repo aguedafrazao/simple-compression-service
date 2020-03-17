@@ -3,3 +3,4 @@ compressor/app
 compressor/*.txt
 compressor/*.huff
 .env
+.idea/
