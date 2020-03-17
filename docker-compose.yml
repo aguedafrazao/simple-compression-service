@@ -3,6 +3,10 @@ version: "3.7"
 services:
   compressor:
     image: animal505/compressor:latest
+    container_name: compressor
+    restart: always
+    depends_on:
+      - redis
     environment:
       REDIS_HOST: "redis"
       EMAIL: "${EMAIL}"
@@ -12,6 +16,10 @@ services:
 
   inputhandler:
     image: animal505/inputhandler:latest
+    container_name: inputhandler
+    restart: always
+    depends_on:
+      - redis
     ports:
       - 8085:8080
     environment:
