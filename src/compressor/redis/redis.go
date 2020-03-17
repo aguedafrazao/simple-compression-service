@@ -1,7 +1,9 @@
 package redis
 
 import (
+	"fmt"
 	"log"
+	"os"
 
 	"github.com/garyburd/redigo/redis"
 )
@@ -13,10 +15,14 @@ type Client struct {
 
 // New returns a new pool
 func New() *Client {
+	redisHost := os.Getenv("REDIS_HOST")
+	if redisHost == "" {
+		redisHost = "localhost"
+	}
 	var redispool *redis.Pool
 	redispool = &redis.Pool{
 		Dial: func() (redis.Conn, error) {
-			return redis.Dial("tcp", "localhost:6379")
+			return redis.Dial("tcp", fmt.Sprintf("%s:6379", redisHost))//"localhost:6379"
 		},
 	}
 	conn := redispool.Get()
