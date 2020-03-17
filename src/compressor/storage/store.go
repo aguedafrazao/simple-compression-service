@@ -8,6 +8,7 @@ import (
 	"io/ioutil"
 	"mime/multipart"
 	"net/http"
+	"net/http/httputil"
 	"net/url"
 	"strconv"
 )
@@ -133,7 +134,11 @@ func generatePublicLink(p *PCloudClient, fileID int) (string, error) {
 		return "", err
 	}
 	if resp.StatusCode != http.StatusOK {
-		return "", fmt.Errorf("Unexpected response")
+		dump, err := httputil.DumpResponse(resp, true)
+		if err != nil {
+			return "", fmt.Errorf("Server responded with non 200 (OK) status code. Response failed to dump")
+		}
+		return "", fmt.Errorf("Server responded with a non 200 (OK) status code. Response dump: \n\n%s", string(dump))
 	}
 	data, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
@@ -145,7 +150,11 @@ func generatePublicLink(p *PCloudClient, fileID int) (string, error) {
 		return "", err
 	}
 	if jsonResp.Link == "" {
-		return "", fmt.Errorf("something went wrong generating a public link")
+		dump, err := httputil.DumpResponse(resp, true)
+		if err != nil {
+			return "", fmt.Errorf("Server responded with non 200 (OK) status code. Response failed to dump")
+		}
+		return "", fmt.Errorf("Something went wrong when generating the public link. Response was: \n\n%s", string(dump))
 	}
 	return jsonResp.Link, nil
 }
