@@ -5,6 +5,10 @@ services:
     image: animal505/compressor:latest
     environment:
       REDIS_HOST: "redis"
+      EMAIL: "${EMAIL}"
+      PASSWORD: "${PASSWORD}"
+      PCLOUD_LOGIN: "${PCLOUD_LOGIN}"
+      PCLOUD_PASSWORD: "${PCLOUD_PASSWORD}"
 
   inputhandler:
     image: animal505/inputhandler:latest
