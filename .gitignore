@@ -7,3 +7,4 @@ compressor/*.huff
 src/inputhandler/inputhandler
 src/compressor/compressor
 src/apps/inputhandler/inputhandler
+src/apps/compressor/compressor
