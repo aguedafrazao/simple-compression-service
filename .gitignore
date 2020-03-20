@@ -5,3 +5,4 @@ compressor/*.huff
 .env
 .idea/
 src/inputhandler/inputhandler
+src/compressor/compressor
