@@ -4,3 +4,4 @@ compressor/*.txt
 compressor/*.huff
 .env
 .idea/
+src/inputhandler/inputhandler
