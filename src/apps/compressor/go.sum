@@ -1,2 +1,10 @@
+github.com/ABuarque/simple-compression-service v0.0.0-20200320072551-72cdc92eef43 h1:XJ0YrTaQS0gDzongmPjFNJOmDm8ie+fdHsmtQWoFPq8=
+github.com/ABuarque/simple-compression-service v0.0.0-20200320141159-c95aa5fd796f h1:yVEjWMdqdLNlPpubsynCLIdZYJCP74b5kOKwcQF4/sY=
+github.com/ABuarque/simple-compression-service/src/libs/mail v0.0.0-20200320141159-c95aa5fd796f h1:YYlTPFeOD+XWuhCWRcd7Y80mxGNIm96qWR1lW4OF4m8=
+github.com/ABuarque/simple-compression-service/src/libs/mail v0.0.0-20200320141159-c95aa5fd796f/go.mod h1:o+CWBuYwZBizbsOfUGN4C6+dIhfAsL2Jk4YZ4UdZfOw=
+github.com/ABuarque/simple-compression-service/src/libs/redis v0.0.0-20200320072551-72cdc92eef43 h1:elJExF13HDz91uKdIouas22LovuLK9mtZJO+iK+5lzE=
+github.com/ABuarque/simple-compression-service/src/libs/redis v0.0.0-20200320072551-72cdc92eef43/go.mod h1:9ELfvTKnLlPgRN3W8Xt+zeOLOmgExoPcbUqN8pNHnmg=
+github.com/ABuarque/simple-compression-service/src/libs/storage v0.0.0-20200320072551-72cdc92eef43 h1:gAaBXx+8uP6Ae0rD5V/JUaV+tyr4h/Kfk+Twp+/jG5I=
+github.com/ABuarque/simple-compression-service/src/libs/storage v0.0.0-20200320072551-72cdc92eef43/go.mod h1:qJAxRFuahjs/NvdTaGkFmB9uHNIa0VtdezNWgC+5178=
 github.com/garyburd/redigo v1.6.0 h1:0VruCpn7yAIIu7pWVClQC8wxCJEcG3nyzpMSHKi1PQc=
 github.com/garyburd/redigo v1.6.0/go.mod h1:NR3MbYisc3/PwhQ00EMzDiPmrwpPxAn5GI05/YaO1SY=

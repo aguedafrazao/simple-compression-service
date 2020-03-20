@@ -2,17 +2,18 @@ package main
 
 import (
 	"encoding/json"
-	"inputhandler/redis"
 	"log"
 	"net/http"
 	"os"
+
+	"github.com/ABuarque/simple-compression-service/src/libs/redis"
 )
 
 type in struct {
 	File  string `json:"file"`
 	Email string `json:"email"`
 }
-
+//https://medium.com/@jwenz723/fetching-private-go-modules-during-docker-build-5b76aa690280
 var re *redis.Client
 
 func handleFile(w http.ResponseWriter, r *http.Request) {
