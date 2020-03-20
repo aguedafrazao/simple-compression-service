@@ -33,6 +33,7 @@ func (c *Client) Send(to, subject, body string) {
 		fmt.Println("could not sent email: ", err)
 	}
 }
+
 func getMXRecord(to string) (mx string, err error) {
 	var e *mail.Address
 	e, err = mail.ParseAddress(to)
