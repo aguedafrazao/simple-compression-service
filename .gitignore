@@ -6,3 +6,4 @@ compressor/*.huff
 .idea/
 src/inputhandler/inputhandler
 src/compressor/compressor
+src/apps/inputhandler/inputhandler
