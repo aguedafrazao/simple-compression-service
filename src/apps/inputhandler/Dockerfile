@@ -1,3 +1,4 @@
+#docker build -t inp --build-arg ACCESS_TOKEN_USR=ABuarque --build-arg ACCESS_TOKEN_PWD=9d06afa934ed8e1fc4394e810bb35190797d67d2 .
 # To get packages tools
 FROM golang:1.14.0-alpine AS builder
 
