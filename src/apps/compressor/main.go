@@ -3,9 +3,9 @@ package main
 // #include "HuffmanHandler.h"
 import "C"
 import (
-	"compressor/mail"
-	"compressor/redis"
-	"compressor/storage"
+	"github.com/ABuarque/simple-compression-service/src/libs/storage"
+	"github.com/ABuarque/simple-compression-service/src/libs/redis"
+	"github.com/ABuarque/simple-compression-service/src/libs/mail"
 	"encoding/base64"
 	"encoding/json"
 	"fmt"

@@ -1,5 +1,25 @@
+#docker build -t inp --build-arg ACCESS_TOKEN_USR=ABuarque --build-arg ACCESS_TOKEN_PWD=9d06afa934ed8e1fc4394e810bb35190797d67d2 .
 # To get packages tools
 FROM golang:1.14.0-alpine AS builder
+
+ARG ACCESS_TOKEN_USR="nothing"
+
+ARG ACCESS_TOKEN_PWD="nothing"
+
+# git is required to fetch go dependencies
+RUN apk add --no-cache ca-certificates git
+
+#Create a netrc file using the credentials specified using --build-arg
+RUN printf "machine github.com\n\
+    login ${ACCESS_TOKEN_USR}\n\
+    password ${ACCESS_TOKEN_PWD}\n\
+    \n\
+    machine api.github.com\n\
+    login ${ACCESS_TOKEN_USR}\n\
+    password ${ACCESS_TOKEN_PWD}\n"\
+    >> /root/.netrc
+
+RUN chmod 600 /root/.netrc
 
 # Set necessary environmet variables needed for our image
 ENV GO111MODULE=on \
@@ -38,3 +58,5 @@ COPY --from=builder /dist/ /
 
 # Command to run
 ENTRYPOINT ["/main"]
+
+

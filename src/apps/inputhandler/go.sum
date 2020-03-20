@@ -1,2 +1,4 @@
+github.com/ABuarque/simple-compression-service/src/libs/redis v0.0.0-20200320071837-f0c4f561de68 h1:zszIdCT3OB2v0yBEw+f8vFJvk99Z87OdpZ9Wo4lHeVE=
+github.com/ABuarque/simple-compression-service/src/libs/redis v0.0.0-20200320071837-f0c4f561de68/go.mod h1:9ELfvTKnLlPgRN3W8Xt+zeOLOmgExoPcbUqN8pNHnmg=
 github.com/garyburd/redigo v1.6.0 h1:0VruCpn7yAIIu7pWVClQC8wxCJEcG3nyzpMSHKi1PQc=
 github.com/garyburd/redigo v1.6.0/go.mod h1:NR3MbYisc3/PwhQ00EMzDiPmrwpPxAn5GI05/YaO1SY=
