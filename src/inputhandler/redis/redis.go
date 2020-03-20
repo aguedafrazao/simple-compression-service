@@ -13,7 +13,7 @@ type Client struct {
 	pool *redis.Pool
 }
 
-// New returns a new pool
+// New returns a new Client
 func New() *Client {
 	redisHost := os.Getenv("REDIS_HOST")
 	if redisHost == "" {
@@ -22,7 +22,7 @@ func New() *Client {
 	var redispool *redis.Pool
 	redispool = &redis.Pool{
 		Dial: func() (redis.Conn, error) {
-			return redis.Dial("tcp", fmt.Sprintf("%s:6379", redisHost))//"localhost:6379"
+			return redis.Dial("tcp", fmt.Sprintf("%s:6379", redisHost))
 		},
 	}
 	conn := redispool.Get()
@@ -43,7 +43,7 @@ func (c *Client) Publish(key string, value string) error {
 	return err
 }
 
-// Subscribe subscribe
+// Subscribe subscribe a client to a topic
 func (c *Client) Subscribe(key string, msg chan []byte) error {
 	rc := c.pool.Get()
 	psc := redis.PubSubConn{Conn: rc}

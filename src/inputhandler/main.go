@@ -2,7 +2,6 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"inputhandler/redis"
 	"log"
 	"net/http"
@@ -17,24 +16,30 @@ type in struct {
 var re *redis.Client
 
 func handleFile(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
 	var in in
 	err := json.NewDecoder(r.Body).Decode(&in)
 	if err != nil {
-		http.Error(w, "failed to decode", 500)
+		w.WriteHeader(http.StatusInternalServerError)
+		payload := map[string]string{
+			"msg": "failed to decode file",
+		}
+		json.NewEncoder(w).Encode(payload)
 	}
 	payloadAsBytes, err := json.Marshal(in)
 	if err != nil {
-		http.Error(w, "failed to handle input", 500)
+		w.WriteHeader(http.StatusInternalServerError)
+		payload := map[string]string{
+			"msg": "failed to decode file",
+		}
+		json.NewEncoder(w).Encode(payload)
 	}
 	re.Publish("compression", string(payloadAsBytes))
+	w.WriteHeader(http.StatusOK)
 	payload := map[string]string{
-		"msg": "File being processed",
+		"msg": "file being compressed!",
 	}
-	bytes, err := json.Marshal(payload)
-	if err != nil {
-		http.Error(w, "failed to unmarshal value", 500)
-	}
-	fmt.Fprintf(w, string(bytes))
+	json.NewEncoder(w).Encode(payload)
 }
 
 func main() {
