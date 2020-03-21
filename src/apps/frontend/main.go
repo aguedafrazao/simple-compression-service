@@ -51,7 +51,7 @@ func compress(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		fmt.Println("pau marshando")
 	}
-	res, err := http.Post(fmt.Sprintf("http://%s:8085/compress", API_HOST), "application/json", bytes.NewBuffer(b))
+	res, err := http.Post(fmt.Sprintf("http://%s:8080/compress", API_HOST), "application/json", bytes.NewBuffer(b))
 	if err != nil {
 		fmt.Println("pau no post: ", err)
 	}
