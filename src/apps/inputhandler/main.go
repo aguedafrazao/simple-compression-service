@@ -13,7 +13,7 @@ type in struct {
 	File  string `json:"file"`
 	Email string `json:"email"`
 }
-//https://medium.com/@jwenz723/fetching-private-go-modules-during-docker-build-5b76aa690280
+
 var re *redis.Client
 
 func handleFile(w http.ResponseWriter, r *http.Request) {

@@ -3,12 +3,12 @@ package main
 // #include "HuffmanHandler.h"
 import "C"
 import (
-	"github.com/ABuarque/simple-compression-service/src/libs/storage"
-	"github.com/ABuarque/simple-compression-service/src/libs/redis"
-	"github.com/ABuarque/simple-compression-service/src/libs/mail"
 	"encoding/base64"
 	"encoding/json"
 	"fmt"
+	"github.com/ABuarque/simple-compression-service/src/libs/mail"
+	"github.com/ABuarque/simple-compression-service/src/libs/redis"
+	"github.com/ABuarque/simple-compression-service/src/libs/storage"
 	"os"
 )
 
