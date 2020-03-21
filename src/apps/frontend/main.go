@@ -13,6 +13,9 @@ import (
 	"strings"
 )
 
+// API_HOST is the API
+var API_HOST string
+
 type Home struct {
 	Title string
 }
@@ -28,7 +31,7 @@ func homeHandler(w http.ResponseWriter, r *http.Request) {
 
 func compress(w http.ResponseWriter, r *http.Request) {
 	email := r.FormValue("email")
-	option := r.FormValue("options")
+	//option := r.FormValue("options")
 	file, header, err := r.FormFile("file")
 	if err != nil {
 		fmt.Println("PAU FOI NO ARQUIVO: ", err)
@@ -38,10 +41,7 @@ func compress(w http.ResponseWriter, r *http.Request) {
 	name := strings.Split(header.Filename, ".")
 	fmt.Printf("File name %s\n", name[0])
 	io.Copy(&buf, file)
-	contents := buf.String()
-	fmt.Println(contents)
 	buf.Reset()
-	fmt.Println(email, option)
 
 	payload := make(map[string]interface{})
 	payload["email"] = email
@@ -51,8 +51,7 @@ func compress(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		fmt.Println("pau marshando")
 	}
-
-	res, err := http.Post("http://localhost:8085/compress", "application/json", bytes.NewBuffer(b))
+	res, err := http.Post(fmt.Sprintf("http://%s:8085/compress", API_HOST), "application/json", bytes.NewBuffer(b))
 	if err != nil {
 		fmt.Println("pau no post: ", err)
 	}
@@ -80,6 +79,10 @@ func confirmation(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+	API_HOST = os.Getenv("API_HOST")
+	if API_HOST == "" {
+		API_HOST = "localhost"
+	}
 	port := os.Getenv("SERVER_PORT")
 	if port == "" {
 		port = "8086"
