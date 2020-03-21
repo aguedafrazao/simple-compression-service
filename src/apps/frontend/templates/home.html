@@ -156,15 +156,15 @@
 <body>
     <div class="content">
         <div id="amassa">
-            <form method="POST" action="">
+            <form method="POST" enctype="multipart/form-data" action="/compress">
                 <h1>AMASSA!</h1>
                 <p>
                     <label for="name_login">Seu e-mail</label>
-                    <input id="name_login" name="name_login" required="required" type="text"
+                    <input id="name_login" name="email" required="required" type="text"
                         placeholder="ex. example@amassa.com">
                 </p>
                 <p>
-                    <input type="file" name="file_to_upload" id="file_to_upload">
+                    <input type="file" name="file" id="file_to_upload">
                 </p>
                 <p>
                     <select name="options" id="select-op">
