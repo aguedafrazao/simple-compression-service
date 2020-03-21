@@ -2,9 +2,11 @@ package main
 
 import (
 	"bytes"
+	"encoding/json"
 	"fmt"
 	"html/template"
 	"io"
+	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
@@ -40,6 +42,28 @@ func compress(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(contents)
 	buf.Reset()
 	fmt.Println(email, option)
+
+	payload := make(map[string]interface{})
+	payload["email"] = email
+	payload["file"] = string(buf.Bytes())
+
+	b, err := json.Marshal(payload)
+	if err != nil {
+		fmt.Println("pau marshando")
+	}
+
+	res, err := http.Post("http://localhost:8085/compress", "application/json", bytes.NewBuffer(b))
+	if err != nil {
+		fmt.Println("pau no post: ", err)
+	}
+	defer res.Body.Close()
+
+	bo, err := ioutil.ReadAll(res.Body)
+	if err != nil {
+		fmt.Println("pau lendo o build da resposta: ", err)
+	}
+	fmt.Println(string(bo))
+
 	t, err := template.ParseFiles("templates/confirmation.html")
 	if err != nil {
 		fmt.Println("deu pau: ", err)
