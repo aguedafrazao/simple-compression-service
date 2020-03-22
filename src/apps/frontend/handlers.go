@@ -24,7 +24,7 @@ func homeHandler(w http.ResponseWriter, r *http.Request) {
 	t.Execute(w, h)
 }
 
-func compress(w http.ResponseWriter, r *http.Request) {
+func mainHandler(w http.ResponseWriter, r *http.Request) {
 	tmpl := template.Must(template.ParseFiles("templates/home.html"))
 	email := r.FormValue("email")
 	option := r.FormValue("options")

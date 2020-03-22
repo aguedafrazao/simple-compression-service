@@ -19,7 +19,6 @@ func main() {
 		port = "8086"
 	}
 	http.HandleFunc("/", homeHandler)
-	// TODO change route and handler name
-	http.HandleFunc("/compress", compress)
+	http.HandleFunc("/work", mainHandler)
 	log.Fatal(http.ListenAndServe(":"+port, nil))
 }
