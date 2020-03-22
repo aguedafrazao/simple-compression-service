@@ -17,19 +17,22 @@ import (
 var API_HOST string
 
 type Home struct {
-	Title string
+	Title  string
+	Sucess bool
 }
 
 func homeHandler(w http.ResponseWriter, r *http.Request) {
-	h := Home{Title: "Amassa!"}
+	h := Home{Title: "Amassa!", Sucess: false}
 	t, err := template.ParseFiles("templates/home.html")
 	if err != nil {
 		fmt.Println("deu pau: ", err)
+		fmt.Fprintf(w, "Out of service")
 	}
 	t.Execute(w, h)
 }
 
 func compress(w http.ResponseWriter, r *http.Request) {
+	tmpl := template.Must(template.ParseFiles("templates/home.html"))
 	email := r.FormValue("email")
 	//option := r.FormValue("options")
 	file, header, err := r.FormFile("file")
@@ -62,12 +65,14 @@ func compress(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("pau lendo o build da resposta: ", err)
 	}
 	fmt.Println(string(bo))
+	h := Home{Title: "Amassa!", Sucess: true}
+	tmpl.Execute(w, h)
 
-	t, err := template.ParseFiles("templates/confirmation.html")
-	if err != nil {
-		fmt.Println("deu pau: ", err)
-	}
-	t.Execute(w, nil)
+	// t, err := template.ParseFiles("templates/confirmation.html")
+	// if err != nil {
+	// 	fmt.Println("deu pau: ", err)
+	// }
+	// t.Execute(w, nil)
 }
 
 func confirmation(w http.ResponseWriter, r *http.Request) {

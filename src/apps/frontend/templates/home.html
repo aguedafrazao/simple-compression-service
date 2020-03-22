@@ -154,6 +154,9 @@
 </head>
 
 <body>
+    {{ if .Sucess }}
+    <h1>Sucess</h1>
+    {{ else }}
     <div class="content">
         <div id="amassa">
             <form method="POST" enctype="multipart/form-data" action="/compress">
@@ -178,6 +181,7 @@
             </form>
         </div>
     </div>
+    {{ end }}
 </body>
 
 </html>
