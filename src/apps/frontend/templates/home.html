@@ -88,8 +88,6 @@
             margin-bottom: 10px;
             text-shadow: 0 1px 1px #333;
             font-style: italic;
-
-
             -webkit-border-radius: 5px;
             border-radius: 5px;
         }
@@ -99,10 +97,8 @@
             margin-top: 4px;
             padding: 11.4px;
             border: 1px solid #b2b2b2;
-
             -webkit-border-radius: 4px;
             border-radius: 4px;
-
             -webkit-box-shadow: 0px 1px 2px 0px rgba(168, 168, 168, 0.6) inset;
             box-shadow: 0px 1px 2px 0px rgba(168, 168, 168, 0.6) inset;
         }
@@ -119,12 +115,8 @@
             border: 1px solid #b2b2b2;
             padding-left: 230px;
             font-size: 15px;
-
-
-
             -webkit-border-radius: 3px;
             border-radius: 3px;
-
             -webkit-box-shadow: 0px 1px 2px 0px rgba(168, 168, 168, 0.6) inset;
             box-shadow: 0px 1px 2px 0px rgba(168, 168, 168, 0.6) inset;
         }
@@ -156,6 +148,13 @@
 <body>
     {{ if .Sucess }}
     <h1>Sucess</h1>
+    <div class="content">
+        <form method="GET" , action="/home">
+            <p>
+                <input type="submit" value="Novo">
+            </p>
+        </form>
+    </div>
     {{ else }}
     <div class="content">
         <div id="amassa">
