@@ -73,14 +73,6 @@ func compress(w http.ResponseWriter, r *http.Request) {
 	tmpl.Execute(w, h)
 }
 
-func confirmation(w http.ResponseWriter, r *http.Request) {
-	t, err := template.ParseFiles("templates/confirmation.html")
-	if err != nil {
-		fmt.Println("deu pau: ", err)
-	}
-	t.Execute(w, nil)
-}
-
 func main() {
 	API_HOST = os.Getenv("API_HOST")
 	if API_HOST == "" {
@@ -92,6 +84,5 @@ func main() {
 	}
 	http.HandleFunc("/", homeHandler)
 	http.HandleFunc("/compress", compress)
-	http.HandleFunc("/confirmation", confirmation)
 	log.Fatal(http.ListenAndServe(":"+port, nil))
 }
