@@ -53,7 +53,7 @@ func compress(w http.ResponseWriter, r *http.Request) {
 	option := r.FormValue("options")
 	file, header, err := r.FormFile("file")
 	if err != nil {
-		fmt.Println("given file is empty: ")
+		log.Println("given file is empty: ")
 		showMessage("Eita, deu pau ai visse, tenta de novo...", w)
 		return
 	}
@@ -64,13 +64,13 @@ func compress(w http.ResponseWriter, r *http.Request) {
 	if option == "decompress" {
 		fileNameParts := strings.Split(header.Filename, ".")
 		if len(fileNameParts) <= 1 {
-			fmt.Println("file without extension: ", header.Filename)
+			log.Println("file without extension: ", header.Filename)
 			showMessage("oxe, esse arquivo ai tem nem extensão, mande outro!", w)
 			return
 		}
 		extentionFile := fileNameParts[1]
 		if extentionFile != "huff" {
-			fmt.Println("expected extension huff, given ", extentionFile)
+			log.Println("expected extension huff, given ", extentionFile)
 			showMessage("Só sei descomprimir arquivo .huff :(", w)
 			return
 		}
@@ -81,13 +81,13 @@ func compress(w http.ResponseWriter, r *http.Request) {
 	payload["command"] = option
 	b, err := json.Marshal(payload)
 	if err != nil {
-		fmt.Println("error marhaling payload: ", err)
+		log.Println("error marhaling payload: ", err)
 		showMessage("Eita, deu pau ai visse, tenta ai de novo...", w)
 		return
 	}
 	res, err := http.Post(fmt.Sprintf("http://%s:8080/compress", apiHost), "application/json", bytes.NewBuffer(b))
 	if err != nil {
-		fmt.Println("error calling compress microservice: ", err)
+		log.Println("error calling compress microservice: ", err)
 		showMessage("Eita, deu pau ai visse, tenta ai de novo...", w)
 		return
 	}
