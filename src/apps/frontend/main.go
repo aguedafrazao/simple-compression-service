@@ -54,7 +54,7 @@ func compress(w http.ResponseWriter, r *http.Request) {
 	file, header, err := r.FormFile("file")
 	if err != nil {
 		fmt.Println("given file is empty: ")
-		showMessage("Eita, deu pau ai visse, tenta ai de novo...", w)
+		showMessage("Eita, deu pau ai visse, tenta de novo...", w)
 		return
 	}
 	defer file.Close()
@@ -78,6 +78,7 @@ func compress(w http.ResponseWriter, r *http.Request) {
 	payload := make(map[string]interface{})
 	payload["email"] = email
 	payload["file"] = string(buf.Bytes())
+	payload["command"] = option
 	b, err := json.Marshal(payload)
 	if err != nil {
 		fmt.Println("error marhaling payload: ", err)
