@@ -23,8 +23,8 @@ func homeHandler(w http.ResponseWriter, r *http.Request) {
 	h := Home{Title: "Amassa!", Sucess: false}
 	t, err := template.ParseFiles("templates/home.html")
 	if err != nil {
-		fmt.Println("deu pau: ", err)
-		fmt.Fprintf(w, "Out of service")
+		handleInternalError(w)
+		return
 	}
 	t.Execute(w, h)
 }
