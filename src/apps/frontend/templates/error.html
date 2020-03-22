@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="pt-br">
+    <meta charset="UTF-8">
+    <title>Amassa</title>
+    <link rel="stylesheet" type="text/css" href="tela.css">
+    <style>
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0%;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        form {
+            margin-left: -55px;
+            margin-top: 60px;
+            width: 548px;
+            position: center;
+            padding: 2em;
+            border: 1.5px solid #bebcbc;
+            border-radius: 1.5em;
+            box-shadow: 0px 1px 2px 0px rgba(168, 168, 168, 0.6) inset;
+        }
+
+        .content {
+            width: 500px;
+            min-height: 560px;
+            margin: 0px auto;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 55px;
+            color: #066a75;
+            padding: 2px 0 10px 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-weight: bold;
+            text-align: center;
+            padding-bottom: 30px;
+            transition: all 0.5s linear;
+
+        }
+
+        h1::after {
+            content: ' ';
+            display: block;
+            width: 100%;
+            height: 4px;
+            margin-top: 10px;
+            background: -webkit-linear-gradient(left, rgba(147, 184, 189, 0) 0%, rgba(147, 184, 189, 1) 53%, rgba(147, 184, 189, 0.8) 79%, rgba(147, 184, 189, 0) 100%);
+            background: linear-gradient(left, rgba(147, 184, 189, 0) 0%, rgba(147, 184, 189, 0.8) 20%, rgba(147, 184, 189, 1) 53%, rgba(147, 184, 189, 0.8) 79%, rgba(147, 184, 189, 0) 100%);
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        .content p:first-child {
+            margin: 0px;
+        }
+
+        label {
+            color: #405c60;
+            position: relative;
+        }
+
+        ::-webkit-input-placeholder {
+            color: #bebcbc;
+            font-style: italic;
+        }
+
+        input:-moz-placeholder,
+        textarea:-moz-placeholder {
+            color: #bebcbc;
+            font-style: italic;
+        }
+
+        input[type="file"] {
+            width: 96%;
+            cursor: pointer;
+            padding: 5px 5px;
+            color: #333;
+            font-size: 15px;
+            border: 1px solid #fff;
+            margin-bottom: 10px;
+            text-shadow: 0 1px 1px #333;
+            font-style: italic;
+            -webkit-border-radius: 5px;
+            border-radius: 5px;
+        }
+
+        input:not([type="checkbox"]) {
+            width: 95%;
+            margin-top: 4px;
+            padding: 11.4px;
+            border: 1px solid #b2b2b2;
+            -webkit-border-radius: 4px;
+            border-radius: 4px;
+            -webkit-box-shadow: 0px 1px 2px 0px rgba(168, 168, 168, 0.6) inset;
+            box-shadow: 0px 1px 2px 0px rgba(168, 168, 168, 0.6) inset;
+        }
+
+        #select-op {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background: url(https://icon-icons.com/icons2/906/PNG/32/down-arrows_icon-icons.com_70186.png) 100% 50% no-repeat;
+            background-color: #fff;
+            width: 100%;
+            margin-top: 4px;
+            padding: 15px;
+            border: 1px solid #b2b2b2;
+            padding-left: 230px;
+            font-size: 15px;
+            -webkit-border-radius: 3px;
+            border-radius: 3px;
+            -webkit-box-shadow: 0px 1px 2px 0px rgba(168, 168, 168, 0.6) inset;
+            box-shadow: 0px 1px 2px 0px rgba(168, 168, 168, 0.6) inset;
+        }
+
+        input[type="submit"] {
+            width: 549px;
+            height: 50px;
+            cursor: pointer;
+            background: #066a75;
+            padding: 8px 5px;
+            color: #fff;
+            font-size: 20px;
+            border: 1px solid #fff;
+            margin-bottom: 5px;
+            text-shadow: 0 1px 1px #333;
+
+            -webkit-border-radius: 5px;
+            border-radius: 5px;
+
+            transition: all 0.5s linear;
+        }
+
+        input[type="submit"]:hover {
+            background: #066a75;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Eita, deu pau ai visse, tenta ai de novo...</h1>
+    <div class="content">
+        <form method="GET" , action="/home">
+            <p>
+                <input type="submit" value="Tentar de novo">
+            </p>
+        </form>
+    </div>
+</body>
+
+</html>

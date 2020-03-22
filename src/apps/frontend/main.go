@@ -6,11 +6,9 @@ import (
 	"fmt"
 	"html/template"
 	"io"
-	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
-	"strings"
 )
 
 // API_HOST is the API
@@ -31,48 +29,48 @@ func homeHandler(w http.ResponseWriter, r *http.Request) {
 	t.Execute(w, h)
 }
 
+func handleInternalError(w http.ResponseWriter) {
+	t, err := template.ParseFiles("templates/error.html")
+	if err != nil {
+		fmt.Println("error on handling error")
+		fmt.Fprintf(w, "Internal server error, contact support using +55 82 99927-5668")
+		return
+	}
+	t.Execute(w, nil)
+}
+
 func compress(w http.ResponseWriter, r *http.Request) {
 	tmpl := template.Must(template.ParseFiles("templates/home.html"))
 	email := r.FormValue("email")
 	//option := r.FormValue("options")
-	file, header, err := r.FormFile("file")
+	file, _, err := r.FormFile("file")
 	if err != nil {
-		fmt.Println("PAU FOI NO ARQUIVO: ", err)
+		fmt.Println("given file is empty: ")
+		handleInternalError(w)
+		return
 	}
 	defer file.Close()
 	var buf bytes.Buffer
-	name := strings.Split(header.Filename, ".")
-	fmt.Printf("File name %s\n", name[0])
 	io.Copy(&buf, file)
 	buf.Reset()
-
 	payload := make(map[string]interface{})
 	payload["email"] = email
 	payload["file"] = string(buf.Bytes())
-
 	b, err := json.Marshal(payload)
 	if err != nil {
-		fmt.Println("pau marshando")
+		fmt.Println("error marhaling payload: ", err)
+		handleInternalError(w)
+		return
 	}
 	res, err := http.Post(fmt.Sprintf("http://%s:8080/compress", API_HOST), "application/json", bytes.NewBuffer(b))
 	if err != nil {
-		fmt.Println("pau no post: ", err)
+		fmt.Println("error calling compress microservice: ", err)
+		handleInternalError(w)
+		return
 	}
 	defer res.Body.Close()
-
-	bo, err := ioutil.ReadAll(res.Body)
-	if err != nil {
-		fmt.Println("pau lendo o build da resposta: ", err)
-	}
-	fmt.Println(string(bo))
 	h := Home{Title: "Amassa!", Sucess: true}
 	tmpl.Execute(w, h)
-
-	// t, err := template.ParseFiles("templates/confirmation.html")
-	// if err != nil {
-	// 	fmt.Println("deu pau: ", err)
-	// }
-	// t.Execute(w, nil)
 }
 
 func confirmation(w http.ResponseWriter, r *http.Request) {
