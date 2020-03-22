@@ -47,7 +47,6 @@ func compress(w http.ResponseWriter, r *http.Request) {
 	payload["email"] = email
 	payload["file"] = encoded
 	payload["command"] = option
-	log.Println("payload to send: ", payload)
 	b, err := json.Marshal(payload)
 	if err != nil {
 		log.Println("error marshaling payload: ", err)
