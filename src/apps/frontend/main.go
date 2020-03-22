@@ -11,22 +11,12 @@ import (
 	"os"
 )
 
-// API_HOST is the API
+// API_HOST holds the api ip
 var API_HOST string
 
+// Home constrols the state of main html file
 type Home struct {
-	Title  string
 	Sucess bool
-}
-
-func homeHandler(w http.ResponseWriter, r *http.Request) {
-	h := Home{Title: "Amassa!", Sucess: false}
-	t, err := template.ParseFiles("templates/home.html")
-	if err != nil {
-		handleInternalError(w)
-		return
-	}
-	t.Execute(w, h)
 }
 
 func handleInternalError(w http.ResponseWriter) {
@@ -37,6 +27,16 @@ func handleInternalError(w http.ResponseWriter) {
 		return
 	}
 	t.Execute(w, nil)
+}
+
+func homeHandler(w http.ResponseWriter, r *http.Request) {
+	h := Home{Sucess: false}
+	t, err := template.ParseFiles("templates/home.html")
+	if err != nil {
+		handleInternalError(w)
+		return
+	}
+	t.Execute(w, h)
 }
 
 func compress(w http.ResponseWriter, r *http.Request) {
@@ -69,7 +69,7 @@ func compress(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	defer res.Body.Close()
-	h := Home{Title: "Amassa!", Sucess: true}
+	h := Home{Sucess: true}
 	tmpl.Execute(w, h)
 }
 
