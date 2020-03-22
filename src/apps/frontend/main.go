@@ -37,21 +37,11 @@ func showMessage(message string, w http.ResponseWriter) {
 	t.Execute(w, f)
 }
 
-func handleInternalError(w http.ResponseWriter) {
-	t, err := template.ParseFiles("templates/error.html")
-	if err != nil {
-		fmt.Println("error on handling error")
-		fmt.Fprintf(w, "Internal server error, contact support using +55 82 99927-5668")
-		return
-	}
-	t.Execute(w, nil)
-}
-
 func homeHandler(w http.ResponseWriter, r *http.Request) {
 	h := Home{Sucess: false}
 	t, err := template.ParseFiles("templates/home.html")
 	if err != nil {
-		handleInternalError(w)
+		showMessage("Eita, deu pau ai visse, tenta ai de novo...", w)
 		return
 	}
 	t.Execute(w, h)
@@ -64,7 +54,7 @@ func compress(w http.ResponseWriter, r *http.Request) {
 	file, header, err := r.FormFile("file")
 	if err != nil {
 		fmt.Println("given file is empty: ")
-		handleInternalError(w)
+		showMessage("Eita, deu pau ai visse, tenta ai de novo...", w)
 		return
 	}
 	defer file.Close()
@@ -91,13 +81,13 @@ func compress(w http.ResponseWriter, r *http.Request) {
 	b, err := json.Marshal(payload)
 	if err != nil {
 		fmt.Println("error marhaling payload: ", err)
-		handleInternalError(w)
+		showMessage("Eita, deu pau ai visse, tenta ai de novo...", w)
 		return
 	}
 	res, err := http.Post(fmt.Sprintf("http://%s:8080/compress", apiHost), "application/json", bytes.NewBuffer(b))
 	if err != nil {
 		fmt.Println("error calling compress microservice: ", err)
-		handleInternalError(w)
+		showMessage("Eita, deu pau ai visse, tenta ai de novo...", w)
 		return
 	}
 	defer res.Body.Close()
