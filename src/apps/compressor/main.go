@@ -1,8 +1,6 @@
 package main
 
-// #cgo CFLAGS: -Iapi/
-// #cgo LDFLAGS: api/huff.a
-// #include "api/HuffmanHandler.h"
+// #include "HuffmanHandler.h"
 import "C"
 import (
 	"encoding/base64"

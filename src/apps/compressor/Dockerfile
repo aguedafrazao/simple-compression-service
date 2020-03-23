@@ -38,7 +38,6 @@ WORKDIR /build
 COPY . . 
 
 RUN cp api/* .
-
 RUN ls 
 
 RUN go mod download
