@@ -1,6 +1,8 @@
 package main
 
-// #include "HuffmanHandler.h"
+// #cgo CFLAGS: -Iapi/
+// #cgo LDFLAGS: api/huff.a
+// #include "api/HuffmanHandler.h"
 import "C"
 import (
 	"encoding/base64"
@@ -80,7 +82,7 @@ func decompressAndSend(in *in) {
 	defer f.Close()
 	_, err = f.Write(dec)
 	if err != nil {
-		log.Println("failed to write bytes in file to compress: ", err)
+		log.Println("failed to write bytes in file to decompress: ", err)
 	}
 	err = f.Sync()
 	if err != nil {
