@@ -53,13 +53,14 @@ func mainHandler(w http.ResponseWriter, r *http.Request) {
 		showMessage("Eita, deu pau ai visse, tenta ai de novo...", w)
 		return
 	}
-	res, err := http.Post(fmt.Sprintf("http://%s:8080/compress", apiHost), "application/json", bytes.NewBuffer(b))
+	res, err := http.Post(fmt.Sprintf("http://%s:8080/process", apiHost), "application/json", bytes.NewBuffer(b))
 	if err != nil {
 		log.Println("error calling compress microservice: ", err)
 		showMessage("Eita, deu pau ai visse, tenta ai de novo...", w)
 		return
 	}
 	defer res.Body.Close()
+	log.Println("http call made to be processed")
 	h := Home{Sucess: true}
 	tmpl.Execute(w, h)
 }
