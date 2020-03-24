@@ -33,17 +33,12 @@ ENV GO111MODULE=on \
 WORKDIR /build
 
 # Copy and download dependency using go mod
-# COPY go.mod .
-# COPY go.sum .
 COPY . . 
 
+# Copy huffman api files to be compiled with main.go
 RUN cp api/* .
-RUN ls 
 
 RUN go mod download
-
-# Copy the code into the container
-# COPY . .
 
 # Build the application
 RUN go build -o main

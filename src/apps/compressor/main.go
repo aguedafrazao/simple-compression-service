@@ -1,6 +1,6 @@
 package main
 
-// #include "HuffmanHandler.h"
+// #include "api/HuffmanHandler.h"
 import "C"
 import (
 	"encoding/base64"
