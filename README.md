@@ -23,6 +23,30 @@ It is placed at [src/apps/reverseproxy](https://github.com/ABuarque/simple-compr
 ### compressor
 It is placed at [src/apps/compressor](https://github.com/ABuarque/simple-compression-service/tree/master/src/apps/compressor). It reads messages from a queue on a Redis in order to process files given commands: compress or decompress. 
 
+## Running (~10 minutes)
+First of all, clone this repo:
+```
+$ git clone https://github.com/ABuarque/simple-compression-service.git # using HTTPS
+
+```
+Go to the cloned directory and create a .env file on the root filling these values:
+```
+EMAIL=youremail@provider.com
+PASSWORD=yourpassword
+PCLOUD_LOGIN=yourpcloudemailaccount@provider.com
+PCLOUD_PASSWORD=yourpcloudpassword
+```
+Put all containers up:
+```
+$ docker-compose up -d
+```
+
+If everything is ok, all containers should be up:
+
+![alt text](https://github.com/ABuarque/simple-compression-service/blob/master/docs/img/containers.png)
+
+If you get email authentication issue, with Gmail for example, it might be happen due to the "allow less security apps" option is disable for your account.
+
 ## Acknowledgments
 - This project came from the ideia to make something out of [my data structure project for college](https://github.com/ABuarque/huffman);
 - Feel free to improve and contribuite to this project sending PRs;
