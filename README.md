@@ -5,6 +5,9 @@ This project is a compressor/decompressor system made with two microservices, a 
 # Screenshot
 ![alt text](https://github.com/ABuarque/simple-compression-service/blob/master/docs/img/amassa.png)
 
+# Service Architecture
+![alt text](https://github.com/ABuarque/simple-compression-service/blob/master/docs/img/diagram.png)
+
 ## Reverse proxy
 The reverse proxy was made using [NGINX](https://www.nginx.com/) server on Docker. It is placed at [src/apps/reverseproxy](https://github.com/ABuarque/simple-compression-service/tree/master/src/apps/reverseproxy) with the .conf file and Dockerfile.
 
