@@ -45,6 +45,8 @@ If everything is ok, all containers should be up:
 
 ![alt text](https://github.com/ABuarque/simple-compression-service/blob/master/docs/img/containers.png)
 
+Open up any brower and go to http://localhost:8080/home and enjoy!
+
 If you get email authentication issue, with Gmail for example, it might be happen due to the "allow less security apps" option is disable for your account.
 
 ## Acknowledgments
