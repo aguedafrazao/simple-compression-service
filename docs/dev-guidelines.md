@@ -8,3 +8,6 @@ All microservice should have its Dockerfile in order to join the deployment in d
 
 ## Tests
 Please write tests if possible, at least for the trick situations hard to test.
+
+## Advice
+Readability over performance! ;)
