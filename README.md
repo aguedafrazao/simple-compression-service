@@ -2,6 +2,9 @@
 
 This project is a compressor/decompressor system made with two microservices, a frontend and a reverse proxy. The compression/decompression system uses [Huffman algorithm](https://en.wikipedia.org/wiki/Huffman_coding) and it is written in C programing language. As the main project lanaguage is Go, was used [CGO](https://golang.org/cmd/cgo/#hdr-Using_cgo_with_the_go_command) to make possible go code call the C API.
 
+# Screenshot
+![alt text](https://github.com/ABuarque/simple-compression-service/blob/master/docs/img/amassa.png)
+
 ## Reverse proxy
 The reverse proxy was made using [NGINX](https://www.nginx.com/) server on Docker. It is placed at [src/apps/reverseproxy](https://github.com/ABuarque/simple-compression-service/tree/master/src/apps/reverseproxy) with the .conf file and Dockerfile.
 
