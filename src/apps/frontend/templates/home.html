@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
+<header>
+    
+</header>
 
 <head lang="pt-br">
     <meta charset="UTF-8">
-    <title>Amassa</title>
-    <link rel="stylesheet" type="text/css" href="tela.css">
+    <title>AMASSA</title>
     <style>
         *,
         *::before,
@@ -20,9 +22,13 @@
             width: 548px;
             position: center;
             padding: 2em;
-            border: 1.5px solid #bebcbc;
-            border-radius: 1.5em;
-            box-shadow: 0px 1px 2px 0px rgba(168, 168, 168, 0.6) inset;
+            border: 0.5px solid #45b5c494;
+            border-radius: 0.3em;
+            background: -webkit-linear-gradient( rgba(225, 228, 228, 0.603) 0%, rgba(223, 221, 221, 0.452) 53%, rgba(193, 197, 197, 0.329) 79%, rgba(184, 185, 185, 0.151) 100%);
+        }
+
+        body{
+            background: -webkit-linear-gradient( rgb(26, 108, 121) 0%, rgba(102, 167, 175, 0.897) 53%, rgba(77, 171, 184, 0.719) 79%, rgba(123, 157, 161, 0.123) 100%);
         }
 
         .content {
@@ -142,6 +148,43 @@
         input[type="submit"]:hover {
             background: #066a75;
         }
+
+        body, ul, li{
+            margin: 0px;
+            padding: 0%;
+            list-style: none;
+            font-size: 1.2rem;
+            font-family: Arial;
+        }
+
+        a {
+            text-decoration: none;
+            color: white;
+            font-size: 15px;
+        }
+
+        .header{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .menu{
+            display:flex;
+        }
+
+        .menu li {
+            margin-left: 10px;
+        }
+
+        .menu li a {
+            display: block;
+            padding: 10px;
+        }
+
+
     </style>
 </head>
 
@@ -156,10 +199,19 @@
         </form>
     </div>
     {{ else }}
+    <header class="header">
+        <a href="logo">AMASSA</a>
+        <nav>
+            <ul class="menu">
+                <li><a href="l">Sobre</a></li>
+                <li><a href="l">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
     <div class="content">
         <div id="amassa">
             <form method="POST" enctype="multipart/form-data" action="/work">
-                <h1>AMASSA!</h1>
                 <p>
                     <label for="name_login">Seu e-mail</label>
                     <input id="name_login" name="email" required="required" type="text"
