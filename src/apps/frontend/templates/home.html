@@ -38,27 +38,6 @@
             position: relative;
         }
 
-        h1 {
-            font-size: 55px;
-            color: #066a75;
-            padding: 2px 0 10px 0;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            font-weight: bold;
-            text-align: center;
-            padding-bottom: 30px;
-            transition: all 0.5s linear;
-
-        }
-
-        h1::after {
-            content: ' ';
-            display: block;
-            width: 100%;
-            height: 4px;
-            margin-top: 10px;
-            background: -webkit-linear-gradient(left, rgba(147, 184, 189, 0) 0%, rgba(147, 184, 189, 1) 53%, rgba(147, 184, 189, 0.8) 79%, rgba(147, 184, 189, 0) 100%);
-            background: linear-gradient(left, rgba(147, 184, 189, 0) 0%, rgba(147, 184, 189, 0.8) 20%, rgba(147, 184, 189, 1) 53%, rgba(147, 184, 189, 0.8) 79%, rgba(147, 184, 189, 0) 100%);
-        }
 
         p {
             margin-bottom: 15px;
@@ -131,11 +110,11 @@
             width: 549px;
             height: 50px;
             cursor: pointer;
-            background: #066a75;
+            background: rgba(26, 99, 117, 0.87);
             padding: 8px 5px;
             color: #fff;
             font-size: 20px;
-            border: 1px solid #fff;
+            border: 1px solid rgb(60, 216, 216);
             margin-bottom: 5px;
             text-shadow: 0 1px 1px #333;
 
@@ -160,8 +139,13 @@
         a {
             text-decoration: none;
             color: white;
-            font-size: 15px;
         }
+
+        .logo{
+            font-size: 30px;
+        }
+        
+
 
         .header{
             display: flex;
@@ -169,6 +153,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 20px;
+            background-color:rgba(38, 109, 121, 0.904);
         }
         
         .menu{
@@ -176,12 +161,13 @@
         }
 
         .menu li {
-            margin-left: 10px;
+            margin-left: 20px;
         }
 
         .menu li a {
             display: block;
-            padding: 10px;
+            padding: 8px;
+            font-size: 15px;
         }
 
 
@@ -198,9 +184,11 @@
             </p>
         </form>
     </div>
+
     {{ else }}
+
     <header class="header">
-        <a href="logo">AMASSA</a>
+        <a href="logo" class="logo">AMASSA</a>
         <nav>
             <ul class="menu">
                 <li><a href="l">Sobre</a></li>
