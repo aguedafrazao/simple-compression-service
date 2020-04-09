@@ -276,15 +276,28 @@
             border-radius: 3px;
         }
 
+        .sucess{
+            color: white;
+            text-align: center;
+            font-size: 50px;
+            font-family: Roboto;
+            padding-top: 60px;
+        }
+
+        .form-sucess{
+            background: none;
+            border: none;
+        }
+
 
     </style>
 </head>
 
 <body>
     {{ if .Sucess }}
-    <h1>Sucess</h1>
+    <h1 class="sucess">Enviado com sucesso!</h1>
     <div class="content">
-        <form method="GET" , action="/home">
+        <form class="form-sucess" method="GET" , action="/home">
             <p>
                 <input type="submit" value="Novo">
             </p>
@@ -333,7 +346,7 @@
         </div>
 
         
-        <div class="ctt">
+        <div>
             <form class="form-contact">
                 <p>
                     <h2 class="contact" id="contact">CONTATO</h2>
@@ -353,13 +366,9 @@
                 </p>
             </form>
         </div>
-    
-        <br>
-        <br>
-        <br>
-    
     </div>
     {{ end }}
+
 </body>
 
 </html>
