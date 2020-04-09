@@ -6,6 +6,7 @@
 
 <head lang="pt-br">
     <meta charset="UTF-8">
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
     <title>AMASSA</title>
     <style>
         *,
@@ -124,6 +125,12 @@
             transition: all 0.5s linear;
         }
 
+        textarea{
+            border-radius: 3px;
+            border: 1px solid rgb(50, 189, 189);
+            
+        }
+
         input[type="submit"]:hover {
             background: #066a75;
         }
@@ -133,7 +140,6 @@
             padding: 0%;
             list-style: none;
             font-size: 1.2rem;
-            font-family: Arial;
         }
 
         a {
@@ -170,6 +176,43 @@
             font-size: 15px;
         }
 
+        .about{
+            font-family: Roboto;
+            font-size: 200%;
+            text-align: center;
+            color: rgb(6, 94, 109);
+            margin-bottom: 10px;
+
+        }
+
+        .about-a {
+            color:rgb(6, 94, 109);
+
+        }
+
+        .about-a:hover{
+            text-decoration: underline;
+            color: black;
+        }
+
+        .about-p{
+            text-align: center;
+            color: rgb(6, 94, 109);
+        }
+
+        .msg{
+            padding: 7.5px;
+
+        }
+
+        .contact{
+            text-align: center;
+            color: rgb(6, 94, 109);
+            font-size: 35px;
+        }
+
+ 
+
 
     </style>
 </head>
@@ -191,8 +234,8 @@
         <a href="logo" class="logo">AMASSA</a>
         <nav>
             <ul class="menu">
-                <li><a href="l">Sobre</a></li>
-                <li><a href="l">Contato</a></li>
+                <li><a href="#about">Sobre</a></li>
+                <li><a href="#contact">Contato</a></li>
             </ul>
         </nav>
     </header>
@@ -216,6 +259,49 @@
                 </p>
                 <p>
                     <input type="submit" value="ENVIAR" style="align-self: center;">
+                </p>
+            </form>
+        </div>
+
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+
+        <div>
+            <h1 class="about" id="about">SOBRE</h1>
+            <p class="about-p">Amassa é um projeto open source feito a partir de um <a class="about-a" href="https://github.com/ABuarque/huffman" target="_blank">trabalho de faculdade sobre o algoritmo de compressão de Huffman.</a></p>
+        </div>
+
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        
+        <div>
+            <form>
+                <p>
+                    <h2 class="contact" id="contact">CONTATO</h2>
+                    <input id="name_contact" name="name_contact" required="required" type="text"
+                        placeholder="Seu nome">
+                </p>
+                <p>
+                    <input id="login_contact" name="email_contact" required="required" type="text"
+                    placeholder="E-mail">          
+                </p>
+                <p>
+                    <input id="subject" type="text" name="subject" placeholder="Assunto">
+                </p>
+                <p>
+                    <textarea id="msg" name="comment" rows="7" cols="50" placeholder="Mensagem"></textarea>
+                </p>
+                <p>
+                    <input id="submit" type="submit" value="ENVIAR" style="align-self: center;">
                 </p>
             </form>
         </div>
