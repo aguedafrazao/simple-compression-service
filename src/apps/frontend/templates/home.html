@@ -17,6 +17,7 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
         }
 
+        /*form of compression and descompression*/
         form {
             margin-left: -55px;
             margin-top: 60px;
@@ -31,14 +32,13 @@
         body{
             background: -webkit-linear-gradient( rgb(26, 108, 121) 0%, rgba(102, 167, 175, 0.897) 53%, rgba(77, 171, 184, 0.719) 79%, rgba(123, 157, 161, 0.123) 100%);
         }
-
+        
         .content {
             width: 500px;
             min-height: 560px;
             margin: 0px auto;
             position: relative;
         }
-
 
         p {
             margin-bottom: 15px;
@@ -52,7 +52,8 @@
             color: rgb(6, 82, 95);
             position: relative;
         }
-
+        
+        /*Pattern to web*/
         ::-webkit-input-placeholder {
             color: #bebcbc;
             font-style: italic;
@@ -90,6 +91,7 @@
             box-shadow: 0px 1px 2px 0px rgba(168, 168, 168, 0.6) inset;
         }
 
+        /*option of selection of compression and decompression*/
         #select-op {
             -webkit-appearance: none;
             -moz-appearance: none;
@@ -120,17 +122,13 @@
             border: 1px solid rgb(60, 216, 216);
             margin-bottom: 5px;
             text-shadow: 0 1px 1px #333;
-
             -webkit-border-radius: 5px;
             border-radius: 5px;
-
-            transition: all 0.5s linear;
         }
 
         textarea{
             border-radius: 3px;
             border: 1px solid rgb(50, 189, 189);
-            
         }
 
         input[type="submit"]:hover {
@@ -153,8 +151,6 @@
             font-size: 30px;
         }
         
-
-
         .header{
             display: flex;
             flex-wrap: wrap;
@@ -185,9 +181,9 @@
             padding-top: 250px;
             color: rgb(6, 94, 109);
             margin-bottom: 10px;
-
         }
 
+        /*link of GitHub*/
         .about-a {
             color:rgb(6, 94, 109);
 
@@ -198,6 +194,7 @@
             color: black;
         }
 
+        /*descrition of about*/
         .about-p{
             text-align: center;
             color: rgb(6, 94, 109);
@@ -227,10 +224,8 @@
             border-radius: 3px;
             -webkit-box-shadow: 0px 1px 2px 0px rgba(168, 168, 168, 0.6) inset;
             box-shadow: 0px 1px 2px 0px rgba(168, 168, 168, 0.6) inset;
-
         }
             
-        
         #login_contact{
             width: 94%;
             margin-top: 4px;
@@ -240,7 +235,6 @@
             border-radius: 3px;
             -webkit-box-shadow: 0px 1px 2px 0px rgba(168, 168, 168, 0.6) inset;
             box-shadow: 0px 1px 2px 0px rgba(168, 168, 168, 0.6) inset;
-
         }
 
         #subject{
@@ -254,6 +248,7 @@
             box-shadow: 0px 1px 2px 0px rgba(168, 168, 168, 0.6) inset;
         }
 
+        /*message*/
         #msg{
             padding: 9px;
             border: 1px solid rgb(60, 216, 216);
@@ -271,11 +266,11 @@
             margin-bottom: 5px;
             text-shadow: 0 1px 1px #333;
             align-items:flex-start;
-
             -webkit-border-radius: 3px;
             border-radius: 3px;
         }
 
+        /*susscefully execution page*/
         .sucess{
             color: white;
             text-align: center;
@@ -295,6 +290,7 @@
 
 <body>
     {{ if .Sucess }}
+    <!-- The html is render if the process has happened with sucess-->
     <h1 class="sucess">Enviado com sucesso!</h1>
     <div class="content">
         <form class="form-sucess" method="GET" , action="/home">
@@ -304,8 +300,10 @@
         </form>
     </div>
 
+    <!-- Case the process has happened without sucess the html render this-->
     {{ else }}
 
+    <!--header-->
     <header class="header">
         <a href="logo" class="logo">AMASSA</a>
         <nav>
@@ -318,6 +316,7 @@
     </header>
 
     <div class="content">
+        <!-- form of compression and decompression-->
         <div id="amassa">
             <form method="POST" enctype="multipart/form-data" action="/work">
                 <p>
@@ -345,7 +344,7 @@
             <p class="about-p">Amassa é um projeto open source feito a partir de um <a class="about-a" href="https://github.com/ABuarque/huffman" target="_blank">trabalho de faculdade sobre o algoritmo de compressão de Huffman.</a></p>
         </div>
 
-        
+        <!-- form of contact -->
         <div>
             <form class="form-contact">
                 <p>
